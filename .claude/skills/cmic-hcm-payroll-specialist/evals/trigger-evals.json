@@ -1,0 +1,122 @@
+[
+  {
+    "query": "Customer on Middle East payroll: when an employee's sick leave is paid at 50%, what rate does CMiC apply and what drives it?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 2"
+  },
+  {
+    "query": "We're moving a client from the older tax setup to Vertex. From a payroll user's point of view, what changes and what should they check in their setup?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 3"
+  },
+  {
+    "query": "Which database table and column store an employee's leave balance in CMiC, and what's the SQL to query it?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 4"
+  },
+  {
+    "query": "How does sick leave accrual work in CMiC?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 5"
+  },
+  {
+    "query": "How does leave accounting work in CMiC Payroll?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 7"
+  },
+  {
+    "query": "For a salaried US employee on a regular pay run, how does leave accounting work in CMiC Payroll?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 8"
+  },
+  {
+    "query": "How is overtime calculated?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 9"
+  },
+  {
+    "query": "How does leave accrual work for our hourly union crew in California?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 10"
+  },
+  {
+    "query": "How do I copy equipment hours in Construct Crew Time when copying the previous week's timesheet? Currently only employee hours are copied.",
+    "should_trigger": true,
+    "note": "derived from evals.json id 11"
+  },
+  {
+    "query": "Is there a flag we can turn on to copy equipment hours in Construct Crew Time when copying previous week timesheet?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 12"
+  },
+  {
+    "query": "Walk me through the setup for a California sick leave policy in CMiC US Payroll — step by step, including the fields on the Leave Maintenance screen.",
+    "should_trigger": true,
+    "note": "derived from evals.json id 13"
+  },
+  {
+    "query": "The customer says equipment hours aren't copying under the Previous Day template on Construct Crew Time, even though the doc says they should. Is this a defect?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 14"
+  },
+  {
+    "query": "The Trade / Union field on the Crew Timesheet screen doesn't behave the way the doc says — customer picks a union and the wage doesn't recalculate. Confirm whether this is documented behaviour.",
+    "should_trigger": true,
+    "note": "derived from evals.json id 15"
+  },
+  {
+    "query": "When we terminate an employee, does CMiC automatically remove the Access Code or disable it, or is that a manual step?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 16"
+  },
+  {
+    "query": "I'm testing a garnishment deduction based on a User-Defined DISP income Base Code with a $500 minimum take-home amount on the employee deduction, but I'm not seeing the right result — help me troubleshoot.",
+    "should_trigger": true,
+    "note": "derived from evals.json id 26"
+  },
+  {
+    "query": "How do I set up a California sick leave policy in CMiC payroll? Walk me through where it's configured and how the accrual works.",
+    "should_trigger": true,
+    "note": "derived from id 1 (stripped the 'A consultant asks:' framing)"
+  },
+  {
+    "query": "How does the Daily Max functionality work on the Benefit Master screen?",
+    "should_trigger": true,
+    "note": "derived from id 23 (example query in the meta-prompt)"
+  },
+  {
+    "query": "Explain how the minimum take-home amount works on Employee Deduction.",
+    "should_trigger": true,
+    "note": "derived from id 30 (example query in the meta-prompt)"
+  },
+  {
+    "query": "Where do I see an employee's leave balance?",
+    "should_trigger": true,
+    "note": "derived from evals.json id 34"
+  },
+  {
+    "query": "What's the capital of France?",
+    "should_trigger": false,
+    "note": "derived from evals.json id 6 - existing negative control"
+  },
+  {
+    "query": "hi",
+    "should_trigger": false,
+    "note": "derived from id 33 - a greeting must not fire the skill on description match; onboarding is a behavioural expectation, not a trigger one"
+  },
+  {
+    "query": "Write a Python script to parse a CSV file.",
+    "should_trigger": false,
+    "note": "NEW negative control - unrelated task"
+  },
+  {
+    "query": "Create a JIRA epic and stories for a new timesheet approval feature.",
+    "should_trigger": false,
+    "note": "NEW negative control - boundary test, should route to jira-epic-story-writer"
+  },
+  {
+    "query": "Design the ADF screen for the union pay rates page.",
+    "should_trigger": false,
+    "note": "NEW negative control - boundary test, should route to cmic-adf-screen-designer"
+  }
+]

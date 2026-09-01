@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CMiC HCM Payroll Specialist — Ask a Question</title>
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --bg-hero: linear-gradient(180deg, #eef2fb 0%, #f5f7fb 320px);
+    --surface: #ffffff;
+    --surface-2: #f0f4fa;
+    --border: #e3e8f2;
+    --border-strong: #c8d2e3;
+    --text: #0f1a2e;
+    --text-muted: #5b6b85;
+    --accent: #2e56d3;
+    --accent-hover: #2044b8;
+    --accent-tint: #dee6fc;
+    --accent-tint-2: #eef2fd;
+    --success: #0f9d64;
+    --radius: 14px;
+    --radius-sm: 9px;
+    --shadow-sm: 0 1px 2px rgba(15,23,42,.05);
+    --shadow: 0 6px 20px rgba(15,23,42,.08);
+    --shadow-lg: 0 12px 32px rgba(15,23,42,.12);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0a1120;
+      --bg-hero: linear-gradient(180deg, #0f1a30 0%, #0a1120 320px);
+      --surface: #131c30;
+      --surface-2: #1a253d;
+      --border: #223052;
+      --border-strong: #33456d;
+      --text: #eaf0fb;
+      --text-muted: #94a3b8;
+      --accent: #7ea6ff;
+      --accent-hover: #a4c1ff;
+      --accent-tint: #1e2b52;
+      --accent-tint-2: #182144;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+      --shadow: 0 8px 24px rgba(0,0,0,.4);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,.5);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-hero) fixed;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px 20px 48px; }
+
+  /* Header */
+  header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 40px 8px 28px;
+    margin-bottom: 8px;
+  }
+  header .logo {
+    flex: 0 0 auto;
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--accent) 0%, #6d8ff5 100%);
+    color: white;
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 30px;
+    box-shadow: var(--shadow);
+    letter-spacing: -0.03em;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 26px; font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  header .tagline {
+    margin: 4px 0 8px;
+    color: var(--text-muted); font-size: 15px;
+    max-width: 640px;
+  }
+  header .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    background: var(--accent-tint);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  header .badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Sections */
+  section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  section h2 {
+    margin: 0 0 16px;
+    font-size: 18px; font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  section .subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin: -12px 0 20px;
+  }
+
+  /* Steps */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .step {
+    display: flex; gap: 14px;
+    padding: 18px;
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+  }
+  .step .n {
+    flex: 0 0 34px; height: 34px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: white;
+    display: grid; place-items: center;
+    font-weight: 700; font-size: 15px;
+  }
+  .step .title {
+    font-weight: 600;
+    margin: 3px 0 4px;
+    font-size: 15px;
+  }
+  .step .desc {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Filters */
+  .filters {
+    display: flex; gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .filter {
+    padding: 7px 14px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 13px; font-weight: 500;
+    font-family: inherit;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .filter:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .filter.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  /* Search */
+  .search-row {
+    display: flex; gap: 12px; align-items: center;
+    margin: 16px 0 20px;
+    flex-wrap: wrap;
+  }
+  .search {
+    flex: 1; min-width: 200px;
+    padding: 10px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: inherit; font-size: 14px;
+  }
+  .search:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-tint);
+  }
+  .counter {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* Cards */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+  }
+  .card {
+    padding: 16px 16px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    display: flex; flex-direction: column;
+    gap: 12px;
+    transition: all .15s ease;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+    background: var(--surface);
+  }
+  .card .tag {
+    display: inline-flex; align-items: center;
+    padding: 2px 9px;
+    background: var(--accent-tint);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 10.5px; font-weight: 700;
+    align-self: flex-start;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .card .q {
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+    flex: 1;
+    line-height: 1.5;
+  }
+  .card .actions {
+    display: flex; gap: 8px;
+    margin-top: 2px;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 9px 14px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 6px;
+    transition: background .15s;
+    text-decoration: none;
+    line-height: 1;
+    flex: 1;
+  }
+  .btn:hover { background: var(--accent-hover); }
+  .btn-secondary {
+    flex: 0 0 auto;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-strong);
+    padding: 9px 14px;
+  }
+  .btn-secondary:hover {
+    background: var(--surface-2);
+    color: var(--text);
+    border-color: var(--accent);
+  }
+  .btn svg { width: 14px; height: 14px; }
+
+  /* Custom Q */
+  #custom-q {
+    width: 100%;
+    min-height: 110px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    line-height: 1.55;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  #custom-q:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-tint);
+  }
+  .custom-actions {
+    display: flex; gap: 8px; margin-top: 12px;
+  }
+  .custom-actions .btn { flex: 0 1 auto; padding: 10px 20px; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 32px 20px 8px;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  footer strong { color: var(--text); font-weight: 600; }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--text);
+    color: var(--bg);
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .hidden { display: none !important; }
+  .empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  @media (max-width: 720px) {
+    .container { padding: 16px 14px 32px; }
+    header { padding: 24px 4px 20px; gap: 14px; }
+    header h1 { font-size: 22px; }
+    header .logo { width: 52px; height: 52px; font-size: 26px; }
+    section { padding: 20px 16px; }
+    .steps { grid-template-columns: 1fr; }
+    .cards { grid-template-columns: 1fr; }
+    .btn, .btn-secondary { padding: 10px 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo" aria-hidden="true">P</div>
+    <div>
+      <h1>CMiC HCM Payroll Specialist</h1>
+      <p class="tagline">Ask any CMiC Payroll, Time, ESS, HR or Vertex question in plain English &mdash; the specialist answers from CMiC's official HCM Document Library and cites the source.</p>
+      <span class="badge">Grounded in the HCM Document Library</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>How this works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <div>
+          <div class="title">Pick a question</div>
+          <p class="desc">Browse the catalog by module below, or type your own scenario in the box at the bottom.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <div>
+          <div class="title">Click &ldquo;Ask Claude&rdquo;</div>
+          <p class="desc">A new browser tab opens with the question already typed for you. Just hit send.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <div>
+          <div class="title">Get a grounded answer</div>
+          <p class="desc">You&rsquo;ll get the steps, any jurisdiction notes, and the source document to open for more detail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question catalog</h2>
+    <p class="subtitle">Click <strong>Ask Claude</strong> to open the specialist with the question ready to send. Use <strong>Copy</strong> if you'd rather paste it somewhere else.</p>
+
+    <div class="filters" id="filters">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="me">Middle East</button>
+      <button class="filter" data-filter="us">US Payroll</button>
+      <button class="filter" data-filter="ca">Canadian</button>
+      <button class="filter" data-filter="vertex">Vertex</button>
+      <button class="filter" data-filter="time">Time / E-Time / Crew</button>
+      <button class="filter" data-filter="ess">ESS</button>
+      <button class="filter" data-filter="hcm">Construct HCM</button>
+      <button class="filter" data-filter="hr">HR</button>
+      <button class="filter" data-filter="general">General Payroll</button>
+    </div>
+
+    <div class="search-row">
+      <input type="search" class="search" id="search" placeholder="Search questions by keyword (e.g. sick leave, overtime, ROE, WPS, gratuity)&hellip;" aria-label="Search questions">
+      <span class="counter" id="counter">28 questions</span>
+    </div>
+
+    <div class="cards" id="cards"></div>
+    <div class="empty hidden" id="empty">No questions match that filter or search. Try a different tag or type your own question below.</div>
+  </section>
+
+  <section>
+    <h2>Ask your own question</h2>
+    <p class="subtitle">The best answers come from being specific &mdash; mention the module, the jurisdiction (US / Canada / UK / Middle East), and the employee type (salaried, hourly, union) where they matter.</p>
+    <textarea id="custom-q" placeholder="Example:  In CMiC Middle East Payroll, how do I set up a sick leave policy for hourly workers so it pays 100% for the first 15 days and 50% for the next 15?"></textarea>
+    <div class="custom-actions">
+      <button class="btn" id="ask-custom">Ask Claude</button>
+      <button class="btn btn-secondary" id="copy-custom">Copy Question</button>
+    </div>
+  </section>
+
+  <footer>
+    Answers are grounded in CMiC&rsquo;s <strong>HCM Document Library</strong> and always cite the source document. If Claude asks a follow-up question before answering, that&rsquo;s the specialist confirming which scenario applies (e.g. hourly vs salaried, US vs Middle East) &mdash; answer it and you&rsquo;ll get a precise, jurisdiction-correct reply.
+    <br><br>
+    Not sure which Claude to open? Use <a href="https://claude.ai/new" target="_blank" rel="noopener">claude.ai</a> in your browser &mdash; sign in with your CMiC account.
+  </footer>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
+
+<script>
+// Every prompt is prefixed so the specialist behavior is triggered even if the
+// analyst's Claude session hasn't been pre-loaded with the skill file.
+const PREFIX = "Please answer this as a CMiC HCM Payroll functional specialist. Ground the answer in the CMiC HCM Document Library, cite the source document by title, use business language (no code, no SQL, no table names), note any jurisdiction or patch caveats, and if the answer materially depends on employee type / payroll type / union / a config axis I didn't specify, ask ONE grounded clarifying question first before giving the definitive answer. My question: ";
+
+const questions = [
+  // Middle East
+  { tag: 'Middle East', filter: 'me', q: "In CMiC Middle East Payroll, how do I set up a sick leave policy that pays 100% for the first 15 days, 50% for the next 15, and 0% after? Walk me through the setup and where the tiers are configured." },
+  { tag: 'Middle East', filter: 'me', q: "In CMiC Middle East Payroll, how is end-of-service gratuity calculated for a UAE employee? Walk me through the setup and the calculation, including limited vs unlimited contract differences." },
+  { tag: 'Middle East', filter: 'me', q: "How do I generate a WPS (Wage Protection System) file for a UAE payroll run in CMiC? Walk me through the setup, the file layout, and the export step." },
+  { tag: 'Middle East', filter: 'me', q: "In CMiC Middle East Payroll, what does 'payment month + leave advance' mean, and how is the leave paid to the employee before they take it?" },
+  { tag: 'Middle East', filter: 'me', q: "How do I set up the base wage calculation for a Middle East employee in CMiC? What fields drive base wage and how is it different from full package pay?" },
+  { tag: 'Middle East', filter: 'me', q: "In CMiC Middle East Payroll, how does the annual leave advance salary work? Walk me through the setup and what the employee sees on the paystub." },
+
+  // US Payroll
+  { tag: 'US Payroll', filter: 'us', q: "In CMiC US Payroll, how do I set up a California sick leave policy? Walk me through the configuration and how the accrual works." },
+  { tag: 'US Payroll', filter: 'us', q: "How does overtime calculation work in CMiC US Payroll for a non-union hourly employee under Davis-Bacon prevailing wage? Walk me through the setup." },
+  { tag: 'US Payroll', filter: 'us', q: "In CMiC US Payroll, how do I configure an ACA-eligible benefit deduction? Walk me through the Master Benefit setup and the reporting flow." },
+  { tag: 'US Payroll', filter: 'us', q: "How does CMiC handle SUI wage-base limits when an employee crosses the cap mid-period? What shows up on the paycheck and on the Mid-Year Pay History?" },
+  { tag: 'US Payroll', filter: 'us', q: "In CMiC US Payroll, how do I configure a supplemental pay run for bonuses so the correct supplemental tax rate applies? Walk me through the pay run and calc-method setup." },
+
+  // Canadian
+  { tag: 'Canadian', filter: 'ca', q: "In CMiC Canadian Payroll, how do I fill in ROE Block 17A for a case that requires special earnings? Walk me through what goes in each field of the block." },
+  { tag: 'Canadian', filter: 'ca', q: "How does Work Province Determination work in CMiC Canadian Payroll when an employee works across provinces in the same pay period?" },
+
+  // Vertex
+  { tag: 'Vertex', filter: 'vertex', q: "How do Vertex user-defined compensation IDs work in CMiC HCM Payroll, and what is the step-by-step setup for a custom compensation type?" },
+  { tag: 'Vertex', filter: 'vertex', q: "We're moving from the older tax setup (PTQ) to Vertex PTX in CMiC. From a payroll user's point of view, what changes and what should I check in my setup?" },
+  { tag: 'Vertex', filter: 'vertex', q: "In Vertex PTX, when do I use a Supplemental Pay Type instead of Regular on a benefit? What's the tax treatment difference?" },
+  { tag: 'Vertex', filter: 'vertex', q: "In CMiC's Vertex integration, when a benefit is 'subject' to a tax but not 'taxable' by that tax, what does that mean and how do I configure it on the Benefits Master?" },
+  { tag: 'Vertex', filter: 'vertex', q: "How do I set up a jurisdiction-specific override on a Vertex Deduction ID (e.g. a deduction taxable in most states but exempt in New York)? Walk me through the override popup." },
+
+  // Time / E-Time / Crew
+  { tag: 'Construct Time', filter: 'time', q: "How does E-Time timesheet entry work in Construct Time? Walk me through what an employee sees and what fields the timesheet captures." },
+  { tag: 'Construct Time', filter: 'time', q: "In Construct Crew Time, how do I set up crew management for a foreman entering time on behalf of the crew? Walk me through the setup." },
+  { tag: 'Construct Time', filter: 'time', q: "How do holiday hours work in Construct E-Time? Walk me through how they're generated and where they show up on the timesheet." },
+  { tag: 'Construct Time', filter: 'time', q: "In Construct Crew Time, how does 'Union by Job Location' work for a crew working across sites? Walk me through the setup and how it drives the wage." },
+  { tag: 'Construct Time', filter: 'time', q: "How do I configure the Group Access Code in Construct E-Time, and what does it control for the employee's timesheet entry?" },
+  { tag: 'Construct Time', filter: 'time', q: "In Construct Crew Time, how does the Foreman Signature process work? Walk me through the workflow from foreman to payroll." },
+
+  // ESS
+  { tag: 'ESS', filter: 'ess', q: "In Construct ESS, how does a benefit qualifying event work? Walk me through what the employee does and how the enrollment change is approved." },
+  { tag: 'ESS', filter: 'ess', q: "How is Employee Self Service (Construct ESS) set up to work with Azure single sign-on? Walk me through the setup steps." },
+
+  // HCM
+  { tag: 'Construct HCM', filter: 'hcm', q: "How does the Flutter Import functionality in Construct HCM work? Walk me through what it imports and how to run an import." },
+
+  // HR
+  { tag: 'HR', filter: 'hr', q: "In CMiC HR, how do I set up performance ratings on categories, and how does the rating flow into a review cycle?" },
+
+  // General Payroll
+  { tag: 'General Payroll', filter: 'general', q: "How do I set up an ADHOC frequency for a benefit or deduction in CMiC Payroll? When should I use ADHOC instead of the standard frequencies?" },
+  { tag: 'General Payroll', filter: 'general', q: "In CMiC Payroll, how do I set up a benefit that reduces taxable wages (pre-tax deduction)? Walk me through the Master Benefit setup." },
+  { tag: 'General Payroll', filter: 'general', q: "How does the CMiC Payroll process handle multi-EIN employees? What do I set up so an employee can move between FEINs cleanly across a year?" },
+  { tag: 'General Payroll', filter: 'general', q: "How does the Billing Re-Calculation Utility for Payroll Data work in CMiC? When would a payroll user run it and what does it change?" },
+];
+
+const cardsEl  = document.getElementById('cards');
+const filtersEl = document.getElementById('filters');
+const searchEl = document.getElementById('search');
+const counterEl = document.getElementById('counter');
+const emptyEl  = document.getElementById('empty');
+const toast    = document.getElementById('toast');
+
+// Build cards
+function encodeQ(q) { return encodeURIComponent(PREFIX + q); }
+function claudeUrl(q) { return 'https://claude.ai/new?q=' + encodeQ(q); }
+
+const cardEls = questions.map((item, idx) => {
+  const el = document.createElement('div');
+  el.className = 'card';
+  el.dataset.filter = item.filter;
+  el.dataset.text = (item.tag + ' ' + item.q).toLowerCase();
+  el.innerHTML = `
+    <span class="tag">${item.tag}</span>
+    <p class="q"></p>
+    <div class="actions">
+      <a class="btn" href="${claudeUrl(item.q)}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        Ask Claude
+      </a>
+      <button class="btn btn-secondary" type="button" data-copy="${idx}" aria-label="Copy question">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+        Copy
+      </button>
+    </div>
+  `;
+  el.querySelector('.q').textContent = item.q;
+  cardsEl.appendChild(el);
+  return el;
+});
+
+// Filter + search state
+let currentFilter = 'all';
+let currentSearch = '';
+
+function applyFilters() {
+  const q = currentSearch.trim().toLowerCase();
+  let shown = 0;
+  cardEls.forEach(c => {
+    const filterOk = currentFilter === 'all' || c.dataset.filter === currentFilter;
+    const searchOk = !q || c.dataset.text.includes(q);
+    const visible = filterOk && searchOk;
+    c.classList.toggle('hidden', !visible);
+    if (visible) shown++;
+  });
+  counterEl.textContent = shown + (shown === 1 ? ' question' : ' questions');
+  emptyEl.classList.toggle('hidden', shown > 0);
+}
+
+filtersEl.addEventListener('click', e => {
+  const btn = e.target.closest('.filter');
+  if (!btn) return;
+  filtersEl.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  applyFilters();
+});
+
+searchEl.addEventListener('input', e => {
+  currentSearch = e.target.value;
+  applyFilters();
+});
+
+// Copy handling
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const t = document.createElement('textarea');
+    t.value = text;
+    t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    document.execCommand('copy');
+    document.body.removeChild(t);
+  }
+  showToast('Copied to clipboard');
+}
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => toast.classList.remove('show'), 1500);
+}
+
+document.addEventListener('click', e => {
+  const cp = e.target.closest('[data-copy]');
+  if (cp) {
+    const idx = +cp.dataset.copy;
+    copyText(questions[idx].q);
+  }
+});
+
+// Custom question
+const customQ = document.getElementById('custom-q');
+document.getElementById('ask-custom').addEventListener('click', () => {
+  const q = customQ.value.trim();
+  if (!q) { customQ.focus(); return; }
+  window.open(claudeUrl(q), '_blank', 'noopener');
+});
+document.getElementById('copy-custom').addEventListener('click', () => {
+  const q = customQ.value.trim();
+  if (!q) { customQ.focus(); return; }
+  copyText(q);
+});
+
+// Cmd/Ctrl+Enter in the custom box = Ask
+customQ.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+    e.preventDefault();
+    document.getElementById('ask-custom').click();
+  }
+});
+
+// Initial counter
+applyFilters();
+</script>
+</body>
+</html>

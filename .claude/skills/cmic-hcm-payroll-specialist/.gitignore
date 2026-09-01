@@ -1,0 +1,5 @@
+.DS_Store
+# Unverified findings are per-machine scratchpads until promoted.
+# The promote script moves them to learned/verified/ via a PR.
+learned/unverified/*
+!learned/unverified/.gitkeep

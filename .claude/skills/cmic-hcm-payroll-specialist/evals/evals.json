@@ -1,0 +1,485 @@
+{
+  "skill_name": "cmic-hcm-payroll-specialist",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "A consultant asks: how do I set up a California sick leave policy in CMiC payroll? Walk me through where it's configured and how the accrual works.",
+      "expected_output": "Grounded, step-by-step functional setup (navigation path + how the accrual is defined and earned) drawn from the HCM Document Library, with the source document named by title. Business language only — data-level detail (source tables/view, transaction-type codes, per-row columns) is acceptable where it clarifies; what stays out is the code plumbing: no SQL or code syntax, no package / procedure / function / trigger names, no method calls, no repository paths. (Aligned to the 2026-08-21 output-voice correction.)",
+      "files": [],
+      "expectations": [
+        "The reply gives a step-by-step functional setup for a California sick leave policy",
+        "The reply names the navigation path to where the policy is configured",
+        "The reply explains how the accrual is defined and earned",
+        "The reply names the source document by title",
+        "The reply contains no code or SQL syntax, no package/procedure/function/trigger names, no method calls, and no repository paths",
+        "The reply ends with an offer line rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Customer on Middle East payroll: when an employee's sick leave is paid at 50%, what rate does CMiC apply and what drives it?",
+      "expected_output": "Explains, in functional terms, the ME sick-leave pay tiers (e.g. 100% / 50% / 0% by day count) and what setup drives them, notes the jurisdiction is Middle East, and cites the ME payroll source. Does not invent behavior and does not expose any technical internals.",
+      "files": [],
+      "expectations": [
+        "The reply states the Middle East sick-leave pay tiers and the day counts that drive each tier",
+        "The reply names what setup drives the tiers",
+        "The reply explicitly identifies the jurisdiction as Middle East",
+        "The reply cites the Middle East payroll source document by title",
+        "No behaviour is asserted that is not present in the retrieved sources",
+        "The reply contains no code or SQL syntax, no package/procedure/function/trigger names, no method calls, and no repository paths",
+        "The reply ends with an offer line rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We're moving a client from the older tax setup to Vertex. From a payroll user's point of view, what changes and what should they check in their setup?",
+      "expected_output": "Summarizes the transition to Vertex from the Vertex documents in functional terms (what the user configures / verifies, what behaves differently), with the source cited and anything patch-specific flagged. No API, endpoint, code, or field-internal detail.",
+      "files": [],
+      "expectations": [
+        "The reply describes the Vertex transition in terms of what the payroll user configures or verifies",
+        "The reply states what behaves differently after the transition",
+        "The reply flags anything that is patch-specific",
+        "The reply cites the Vertex source document by title",
+        "The reply contains no API endpoint details",
+        "The reply contains no code or SQL syntax, no package/procedure/function/trigger names, no method calls, and no repository paths",
+        "The reply ends with an offer line rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Which database table and column store an employee's leave balance in CMiC, and what's the SQL to query it?",
+      "expected_output": "Refuses the SQL itself — no SQL or code syntax in the reply — but does NOT over-refuse. Explains in plain functional language where leave balances are viewed and configured in the app, citing the source document by title, and MAY name the table or underlying view that holds the balance: data-level detail (source tables/view, transaction-type codes, per-row columns) is WANTED per the 2026-08-21 output-voice correction. Does NOT deflect the whole question to engineering and does NOT claim that naming a table is outside a functional specialist's scope. Still excluded: SQL/code syntax, package / procedure / function / trigger names, method or routine calls, session/context mechanics, repository paths, API endpoint details. Ends with the mandatory offer line.",
+      "files": [],
+      "expectations": [
+        "The reply contains no SQL syntax",
+        "The reply explains where leave balances are viewed and configured in the application",
+        "The reply cites a source document by title",
+        "The reply does not claim that naming a table is outside the specialist's scope",
+        "The reply does not deflect the whole question to engineering",
+        "The reply contains no package/procedure/function/trigger names, method calls, session or context mechanics, repository paths, or API endpoint details",
+        "The reply ends with an offer line rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "How does sick leave accrual work in CMiC?",
+      "expected_output": "Retrieves first, then — because retrieval shows the answer branches on jurisdiction — asks a single grounded clarifying question that names the specific options the sources describe (US / Canada / UK / Middle East), rather than presenting one country's behavior as universal or launching into a generic form question. If the user had already fixed the jurisdiction, the skill would answer directly instead of asking.",
+      "files": [],
+      "expectations": [
+        "The reply asks exactly one clarifying question",
+        "The clarifying question names jurisdiction options drawn from the retrieved sources (US / Canada / UK / Middle East)",
+        "The reply does not present any single country's behaviour as universal",
+        "The reply does not deliver a multi-branch answer covering all jurisdictions",
+        "The clarifying question is rendered via AskUserQuestion with the branch names as options"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "What's the capital of France?",
+      "expected_output": "Should NOT invoke the skill / should answer trivially; used as a negative/non-trigger sanity check.",
+      "files": [],
+      "expectations": [
+        "The skill is not invoked",
+        "The question is answered directly and briefly",
+        "No HCM retrieval is performed"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "How does leave accounting work in CMiC Payroll?",
+      "expected_output": "Retrieves first, then asks ONE grounded clarifying question naming the specific paths the sources describe (e.g. accrual by hours worked for hourly employees vs balance-forward with annual grants for salaried employees), instead of answering with an ambiguous multi-branch response or a generic 'salaried or hourly?' form question. The clarifying question quotes the branch names in the product's own vocabulary.",
+      "files": [],
+      "expectations": [
+        "The reply asks exactly one clarifying question",
+        "The clarifying question names the specific leave-accounting paths from the sources (accrual by hours worked versus balance-forward with annual grants)",
+        "The question uses the product's own vocabulary for the branch names",
+        "The reply does not ask a generic 'salaried or hourly?' form question",
+        "The reply does not deliver an ambiguous multi-branch answer"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "For a salaried US employee on a regular pay run, how does leave accounting work in CMiC Payroll?",
+      "expected_output": "Skips the clarify step (jurisdiction, employee type, and pay run type are all already specified by the user) and answers directly with a grounded functional walk-through drawn from the retrieved sources, citing the document title. Does not ask redundant questions.",
+      "files": [],
+      "expectations": [
+        "The reply answers directly without asking a clarifying question",
+        "The reply gives a grounded functional walkthrough for a salaried US employee on a regular pay run",
+        "The reply cites the source document by title",
+        "The reply does not re-ask for jurisdiction, employee type, or pay run type",
+        "The reply ends with an offer line rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "How is overtime calculated?",
+      "expected_output": "Retrieves broadly, identifies that overtime calculation branches on multiple material axes (jurisdiction, union vs non-union, certified/prevailing wage, hourly vs salaried), and asks ONE grounded clarifying question about the most consequential axis first (typically jurisdiction/union), with the specific options from the sources. Does not attempt a multi-branch omnibus answer.",
+      "files": [],
+      "expectations": [
+        "The reply asks exactly one clarifying question",
+        "The question targets the most consequential branching axis first (jurisdiction and/or union)",
+        "The question names specific options drawn from the retrieved sources",
+        "The reply does not attempt an omnibus answer covering every axis"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "How does leave accrual work for our hourly union crew in California?",
+      "expected_output": "Skips the clarify step — the user has already fixed jurisdiction (US/CA), employee type (hourly), and union — and answers directly with the grounded functional setup for that scenario. Does not ask a generic clarifying question when every material axis is already pinned down.",
+      "files": [],
+      "expectations": [
+        "The reply answers directly without asking a clarifying question",
+        "The reply gives the grounded functional setup for hourly union employees in California",
+        "The reply cites the source document by title",
+        "The reply ends with an offer line rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "How do I copy equipment hours in Construct Crew Time when copying the previous week's timesheet? Currently only employee hours are copied.",
+      "expected_output": "Retrieves first, confirms from the Crew Timesheet Entry doc that there is NO 'Previous Week' copy option — the template pop-up offers only 'Previous Day' and 'Crew Maintenance'. Then applies the 'did you mean' pattern: leads with that finding plainly ('Construct Crew Time doesn't have a weekly copy — the pop-up gives Previous Day and Crew Maintenance'), names the closest actual feature with its branch names, and asks a focused 'did you mean the Previous Day copy?' question. Does NOT present the non-existent 'Previous Week' as an equal option in a two-way A/B survey. Does NOT hedge with 'maybe you're on a newer version' as the first move — only after user pushback. Also notes from the same source that Previous Day is documented to bring 'Crew members, activities, equipment and schedules' forward, so equipment SHOULD copy under that path.",
+      "files": [],
+      "expectations": [
+        "The reply states plainly that Construct Crew Time has no 'Previous Week' copy option",
+        "The reply names the two options the template pop-up actually offers: Previous Day and Crew Maintenance",
+        "The reply asks a focused 'did you mean the Previous Day copy?' question",
+        "The reply does not present 'Previous Week' as an equal option alongside a real one in a two-way survey",
+        "The reply does not lead with the possibility that the user is on a newer version",
+        "The reply notes that Previous Day is documented to bring crew members, activities, equipment and schedules forward",
+        "The reply cites the Crew Timesheet Entry document by title"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Is there a flag we can turn on to copy equipment hours in Construct Crew Time when copying previous week timesheet?",
+      "expected_output": "Short answer only — 2 to 4 sentences plus one source line, no full Details / Setup Steps / Jurisdiction / Caveats blocks. Answer states plainly: no such flag exists, no 'Previous Week' copy exists, and per the documented behaviour equipment already copies with the Previous Day template. Applies the 'did you mean the Previous Day copy?' pattern inline. Ends with a single optional offer line inviting the user to ask for the step-by-step or the defect-repro next steps. Does NOT dump the full walkthrough by default — that would only be triggered by the user asking for steps or an explanation.",
+      "files": [],
+      "expectations": [
+        "The answer body is between two and four sentences",
+        "The reply contains no Details, Setup Steps, Jurisdiction, or Caveats section",
+        "The reply states that no such flag exists",
+        "The reply states that no 'Previous Week' copy exists",
+        "The reply states that equipment already copies under the Previous Day template per the documented behaviour",
+        "The reply includes exactly one source line",
+        "The reply ends with exactly one offer line rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Walk me through the setup for a California sick leave policy in CMiC US Payroll — step by step, including the fields on the Leave Maintenance screen.",
+      "expected_output": "Because the user's phrasing explicitly asks for a step-by-step walkthrough and the fields on the screen, the skill DOES produce the expanded structure — Answer + Setup steps with navigation and fields + jurisdiction caveats + source. Would be wrong to reply with only a short 2-4 sentence answer when the user explicitly asked for depth.",
+      "files": [],
+      "expectations": [
+        "The reply uses the expanded structure rather than the short default",
+        "The reply includes ordered setup steps",
+        "The reply names the navigation path",
+        "The reply names the fields on the Leave Maintenance screen",
+        "The reply includes jurisdiction caveats",
+        "The reply cites the source document by title",
+        "The reply ends with an offer line rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "The customer says equipment hours aren't copying under the Previous Day template on Construct Crew Time, even though the doc says they should. Is this a defect?",
+      "expected_output": "Does NOT label the discrepancy as 'a defect', 'a bug', 'a config gap', 'working as designed', 'an environment issue', or any other diagnostic category — those categories require investigation the functional specialist hasn't done. Instead describes the mismatch neutrally ('the docs describe equipment defaulting in with the Previous Day template — the behaviour you're seeing doesn't match that'), and hands off to the appropriate role for the actual determination — support analyst for a controlled repro, engineering for a defect determination, tenant admin/consultant for a configuration or environment check. Short by default; offers to expand on request rather than dumping the full walkthrough. Does not overclaim from code even if the skill privately checked code — code confirmation calibrates confidence in the documented behaviour but nothing technical appears in the reply.",
+      "files": [],
+      "expectations": [
+        "The reply does not use the words defect, bug, config gap, working as designed, or environment issue to classify the discrepancy",
+        "The reply describes the mismatch neutrally, stating what the docs describe and what the customer observes",
+        "The reply hands off to a named role for the determination: support analyst for a controlled repro, engineering for a defect determination, or tenant admin/consultant for a configuration check",
+        "The answer body is short by default rather than a full walkthrough",
+        "The reply surfaces no technical detail from any code check",
+        "The reply ends with an offer line rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "The Trade / Union field on the Crew Timesheet screen doesn't behave the way the doc says — customer picks a union and the wage doesn't recalculate. Confirm whether this is documented behaviour.",
+      "expected_output": "Retrieves the relevant Crew Timesheet doc, states what the doc describes about Trade/Union selection and wage behaviour, and quietly runs a code-source confirmation via Beacon (source code from crew time REST or PL/SQL) to check whether the documented behaviour matches the code. The reply itself contains NO code plumbing — no code or SQL syntax, no package / procedure / function / trigger names, no method calls, no repository paths. Naming the source table or view is permitted as data-level detail per the 2026-08-21 output-voice correction. If code and docs match, the reply states the documented behaviour confidently and points at support for a tenant-side repro. If code and docs drift, the reply states the documented behaviour but adds a hedge that the specialist recommends verifying on a clean tenant. Never labels the customer's issue as 'a defect' or 'a bug' — hands off to support/engineering for the determination.",
+      "files": [],
+      "expectations": [
+        "The reply states what the Crew Timesheet document describes about Trade/Union selection and wage behaviour",
+        "The reply cites the source document by title",
+        "The reply contains no code or SQL syntax, no package/procedure/function/trigger names, no method calls, and no repository paths",
+        "The reply does not label the customer's issue as a defect or a bug",
+        "The reply either states the documented behaviour confidently and points to support for a tenant-side repro, or states it with a recommendation to verify on a clean tenant",
+        "The reply ends with an offer line rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "When we terminate an employee, does CMiC automatically remove the Access Code or disable it, or is that a manual step?",
+      "expected_output": "First retrieval finds partial coverage in the library (Access Code Administration setup exists but doesn't explicitly document termination-triggered behaviour). Skill runs a silent code-source confirmation and translates the finding into functional language (no code plumbing surfaced — no procedure / function / trigger / package names, method calls, or repository paths; naming a source table or view is permitted per the 2026-08-21 output-voice correction). Answers short-by-default: describes the actual behaviour (disable, not delete; access code preserved for audit / rehire; E-Time access flag switched off; employee unregistered from E-Time). Because the library was silent on this specific behaviour, the offer line at the end of the reply MUST be the library-gap variant, e.g. 'Want me to prepare a functional write-up of this behaviour so it can go to product for review and be added to the HCM Document Library?' — NOT the standard 'want more detail' offer.",
+      "files": [],
+      "expectations": [
+        "The reply states that the access code is disabled rather than deleted",
+        "The reply states that the access code is preserved for audit or rehire",
+        "The reply states that the E-Time access flag is switched off and the employee is unregistered from E-Time",
+        "The answer body is short by default",
+        "The reply contains no procedure, function, trigger, or package names",
+        "The offer line is the library-gap variant, offering to prepare a functional write-up for the HCM Document Library",
+        "The offer line is not the standard 'want more detail' variant",
+        "The offer is rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Yes, prepare that write-up for the library.  (Follow-up after id 16.)",
+      "expected_output": "Produces a Word document (.docx) named '[Topic Name] - Specialist Draft.docx' into ~/cm32/Triage Folder/HCM Doc Library Drafts/ (the single working folder for all specialist drafts), framed as a specialist draft for the HCM Document Library owner to review, verify, and publish. The write-up respects every specialist guardrail — functional / business voice, no code or SQL syntax, no package / procedure / function / trigger names, no method calls, no repository paths, no API endpoint details — while data-level detail (source tables/view, transaction-type codes, per-row columns) is acceptable where it clarifies, per the 2026-08-21 output-voice correction. Cites which parts are already in the library (by doc title) and which parts are NEW (drawn from behaviour verified outside the library). Includes 'Please verify' call-outs on claims that need product confirmation. Suggests where in the library structure the doc should live. Does not present itself as an authoritative reference.",
+      "files": [],
+      "expectations": [
+        "A .docx file is created",
+        "The filename follows the '[Topic Name] - Specialist Draft.docx' convention",
+        "The file is written to ~/cm32/Triage Folder/HCM Doc Library Drafts/",
+        "The document is framed as a specialist draft for the HCM Document Library owner to review, verify and publish",
+        "The document states which parts are already in the library, citing document titles",
+        "The document states which parts are new, drawn from behaviour verified outside the library",
+        "The document includes 'Please verify' call-outs on claims needing product confirmation",
+        "The document suggests where in the library structure it should live",
+        "The document contains no code or SQL syntax, no package/procedure/function/trigger names, no method calls, and no repository paths",
+        "The document does not present itself as an authoritative reference"
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "Prepare a specialist library-gap write-up on any topic where the library is thin. Verify the output shape.",
+      "expected_output": "The Word document strictly follows the seven-section standardized structure: (Header — Draft-for-review callout) → 1. Overview → 2. What the library currently covers → 3. [Topic] (NEW — verified outside the library) with sub-sections and inline amber 'Please verify' call-outs → 4. Practical implications (3-6 sub-sections) → 5. Setup checklist / troubleshooting (numbered) → 6. Please verify (numbered — every inline amber callout has a matching Section 6 line; suggested library location is included) → 7. Draft metadata (two-column table with the exact fixed field list). Callouts are colour-coded: red = 'Draft — for review' (once at top), amber = 'Please verify' (inline), blue = 'Note' (rare), grey = 'Screenshot suggestion — Product: attach here' (inline). Filename follows [Topic Name] - Specialist Draft.docx convention. No new top-level sections invented for the topic — the structure is fixed.",
+      "files": [],
+      "expectations": [
+        "The document contains a red 'Draft — for review' callout at the top, appearing exactly once",
+        "The document contains the seven numbered sections in order: Overview; What the library currently covers; the topic section; Practical implications; Setup checklist / troubleshooting; Please verify; Draft metadata",
+        "Section 3 carries the '(NEW — verified outside the library)' suffix unless all its content comes from library sources cited in Section 2",
+        "Section 4 contains between three and six sub-sections",
+        "Section 5 is a numbered list ordered by what to check first",
+        "Every inline amber 'Please verify' callout has a matching numbered line in Section 6",
+        "Section 6 includes an item on suggested library location",
+        "Section 7 is a two-column table carrying the fixed field list in order",
+        "No new top-level sections are invented for the topic"
+      ]
+    },
+    {
+      "id": 19,
+      "prompt": "Prepare a specialist library-gap write-up for a topic where the reader would benefit from seeing the CMiC screen (e.g. a field on the Access Code screen, or a specific pop-up). Verify screenshot handling.",
+      "expected_output": "The write-up includes one or more inline grey 'Screenshot suggestion — Product: attach here' callouts in Sections 3 and/or 4, positioned exactly where the visual belongs in the reading flow. Each grey callout has three labelled lines — Screen (full CMiC navigation path the specialist wants captured), Capture (what the image should show — the field, tab, pop-up, or region), Purpose (why the reader needs the visual) — plus a unique ID (SS-1, SS-2, …). Section 6 ends with a 'Screenshots to attach' table that has one row per inline grey callout: columns ID / Section / Screen / Capture / Status, with an '☐ Attached' tick column so product can track which images have been inserted. Section 7 metadata includes a 'Screenshots requested' row with the count. The specialist NEVER surfaces technical detail even in the screenshot Screen field — the value is the user-facing menu path (e.g. 'HR & Payroll → Setup → Access Codes → Employee Code tab'), not a URL, controller name, or repository path. Every SS-n in the doc appears in both the inline callout and the Section 6 table, and the counts match.",
+      "files": [],
+      "expectations": [
+        "The document contains at least one inline grey 'Screenshot suggestion — Product: attach here' callout in Section 3 or Section 4",
+        "Each grey callout has three labelled lines: Screen, Capture and Purpose",
+        "Each grey callout carries a unique ID in the form SS-1, SS-2 and so on",
+        "Section 6 ends with a 'Screenshots to attach' table with columns ID, Section, Screen, Capture and Status",
+        "The Status column provides a tick box so product can track attachment",
+        "Section 7 metadata includes a 'Screenshots requested' row whose count matches the number of grey callouts",
+        "Every SS-n appears both as an inline callout and as a row in the Section 6 table",
+        "The Screen value is a user-facing menu path, not a URL, controller name, or repository path"
+      ]
+    },
+    {
+      "id": 20,
+      "prompt": "Prepare a specialist library-gap write-up for a topic where several plausible customer follow-up questions came up during retrieval (e.g. a feature setup chain where routing priority, multi-instance behaviour, or lifecycle interactions weren't spelled out in the sources).",
+      "expected_output": "Section 7 metadata includes an 'Adjacent questions surfaced' field pointing at a bulleted list appended below the metadata table. The list contains 0–4 GROUNDED follow-up questions — questions that came out of retrieval or source review, not invented to fill space. Each item is followed by a short italic parenthetical naming the gap a follow-up draft would close (e.g. 'routing priority not addressed in current guides; needs product verification', 'multi-PM scenario not documented', 'lifecycle interaction with termination behaviour worth its own draft'). Items are cast as questions a customer might realistically ask next on the same feature, not as tangential topics. If no genuine adjacent questions surfaced from the retrieval, the field reads 'None surfaced' — the specialist does NOT pad the list with speculative questions to look thorough. The list caps at 4 items; longer suggests the specialist is expanding scope rather than signalling library-growth priorities.",
+      "files": [],
+      "expectations": [
+        "Section 7 metadata includes an 'Adjacent questions surfaced' field",
+        "The adjacent-questions list appears as a bulleted list below the metadata table",
+        "The list contains between one and four items",
+        "Each item is cast as a question a customer might realistically ask next about the same feature",
+        "Each item is followed by a short italic parenthetical naming the gap a follow-up draft would close",
+        "Every item traces to something that surfaced during retrieval or source review",
+        "No item is tangential to the feature under discussion"
+      ]
+    },
+    {
+      "id": 21,
+      "prompt": "Prepare a specialist library-gap write-up for a small, focused topic (e.g. a single-field clarification) where the retrieval was clean and no obvious adjacent questions came up.",
+      "expected_output": "Section 7 metadata 'Adjacent questions surfaced' field reads 'None surfaced' — the specialist does NOT fabricate follow-up questions to fill the section. All other seven-section requirements still apply (Header + Sections 1–7 all present, callouts colour-coded correctly, filename convention, folder location), but the Adjacent-questions field remains empty by design. Purpose: the specialist honours the rule that the field is a signal for the library owner, not a required feature checklist item; padding it destroys its signal value.",
+      "files": [],
+      "expectations": [
+        "Section 7 metadata 'Adjacent questions surfaced' field reads 'None surfaced'",
+        "No speculative follow-up questions are invented to fill the field",
+        "The header callout and all seven sections are still present",
+        "Callouts are still colour-coded per convention",
+        "The filename follows the '[Topic Name] - Specialist Draft.docx' convention",
+        "The file is written to ~/cm32/Triage Folder/HCM Doc Library Drafts/"
+      ]
+    },
+    {
+      "id": 22,
+      "prompt": "Ask a CMiC HCM setup question where the library has clean, authoritative coverage (e.g. 'walk me through how to configure a California sick leave policy in CMiC US Payroll').",
+      "expected_output": "The reply ends with a MANDATORY offer line — never omitted. Because retrieval is clean and the docs are authoritative, the offer line is variant A ('Want more detail?' / 'Want the step-by-step, the screen fields, or the setup options?'). Because the user's phrasing 'walk me through' already asked for depth, the answer body may itself be expanded, but the offer line is still present at the end. Not omitted, not replaced with 'let me know if you have questions' filler.",
+      "files": [],
+      "expectations": [
+        "The reply ends with an offer line",
+        "The offer is variant A, inviting the user to go deeper",
+        "The offer is rendered via AskUserQuestion",
+        "The offer line is not replaced with filler such as 'let me know if you have questions'",
+        "The offer line is present even though the answer body is expanded"
+      ]
+    },
+    {
+      "id": 23,
+      "prompt": "Ask a CMiC HCM question where retrieval is thin, ambiguous, or the library only has a design scope document (e.g. 'how does the Daily Max functionality work on the Benefit Master screen').",
+      "expected_output": "The reply does NOT hedge with 'may be in-flight' or 'the doc suggests but does not confirm' and then wait for the user to demand a source check. Instead: (1) states plainly what the library shows, (2) ends with a variant-B offer — 'The library only has a design scope doc for this — want me to check the source to confirm whether this is released behaviour?'. The specialist does NOT silently decide to check source without offering; the user gets to choose. This is the middle case between variant A (docs are clean) and variant C (library-gap write-up after source confirms).",
+      "files": [],
+      "expectations": [
+        "The reply states plainly what the library shows on the topic",
+        "The reply does not hedge with phrases such as 'may be in-flight' or 'the doc suggests but does not confirm' in place of making an offer",
+        "The reply ends with a variant-B offer to check the source to confirm whether this is released behaviour",
+        "The specialist does not run the source check without offering it first",
+        "The offer is rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 24,
+      "prompt": "User says 'yes check the source' after a variant-B offer (follow-up to id 23).",
+      "expected_output": "Specialist runs a silent source-code check via Beacon (no code plumbing surfaced in the reply — no code or SQL syntax, no package / procedure / function / trigger names, no method calls, no repository paths, no version markers; naming a source table or view is permitted as data-level detail per the 2026-08-21 output-voice correction), then answers the original question with higher confidence, translating the code confirmation into functional / business voice. The reply ends with a variant-C offer — 'Want me to prepare a functional write-up for product to review and add to the library?' — because the library-gap has now been confirmed by the source check. The offer chain is B → C, one variant at a time, one reply at a time. Never combine B and C in the same reply.",
+      "files": [],
+      "expectations": [
+        "The reply answers the original question with higher confidence",
+        "The source-check finding is translated into functional and business language",
+        "The reply contains no code or SQL syntax, no package/procedure/function/trigger names, no method calls, no repository paths, and no version markers",
+        "The reply ends with a variant-C offer to prepare a functional write-up for product to review and add to the library",
+        "Variant B and variant C do not both appear in the same reply",
+        "The offer is rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 25,
+      "prompt": "Any CMiC HCM specialist reply, regardless of topic.",
+      "expected_output": "The reply MUST end with an offer line. There is no valid case where the offer line is omitted. If none of variants B or C apply, the specialist falls back to variant A. If the topic has genuinely no more depth (rare — a one-field clarification with no adjacent behaviour), the offer line acknowledges that plainly ('Anything else on this benefit?') — but is still present. The specialist NEVER ships a reply that ends with the source citation alone, with no offer to move deeper.",
+      "files": [],
+      "expectations": [
+        "The reply ends with an offer line",
+        "The offer line is present regardless of topic or retrieval outcome",
+        "If neither variant B nor variant C applies, variant A is used",
+        "The reply does not end with the source citation as its final element",
+        "The offer is rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 26,
+      "prompt": "I'm testing a garnishment deduction based on a User-Defined DISP income Base Code with a $500 minimum take-home amount on the employee deduction, but I'm not seeing the right result — help me troubleshoot.",
+      "expected_output": "Specialist enters TROUBLESHOOTING MODE (recognized from the trigger cues 'testing', 'not seeing the right result', 'help me troubleshoot'). The first reply follows T1 + T3: (1) briefly frames this as a troubleshooting scenario and states plainly that the specialist will walk down the decision tree from the described setup, (2) retrieves silently and states the EXPECTED calculation shape citing the source (percentage-based deduction + DISP Base Code aggregation + minimum take-home floor), (3) asks ONE narrowing diagnostic question that extracts the smallest set of observed data that would materially narrow the hypothesis — e.g. 'what does the payroll register show for disposable income, garnishment amount taken, and resulting net pay?' — and invites a screenshot explicitly. Does NOT dump a checklist of possible causes; does NOT ask 'send me all your setup screens'; does NOT jump to 'the answer is'; does NOT label anything as 'defect'/'bug'/'config issue'.",
+      "files": [],
+      "expectations": [
+        "The reply frames the exchange as troubleshooting and says the specialist will walk down the decision tree",
+        "The reply states the expected calculation shape and cites the source",
+        "The reply asks exactly one diagnostic question",
+        "The question requests the smallest set of observed data that would narrow the hypothesis",
+        "The reply explicitly invites a screenshot",
+        "The reply does not present a checklist of possible causes",
+        "The reply does not ask for all setup screens at once",
+        "The reply does not open with a conclusion",
+        "The reply does not use the words defect, bug, or config issue"
+      ]
+    },
+    {
+      "id": 27,
+      "prompt": "Follow-up in troubleshooting mode — user provides observed values: 'disposable income = $2,000, garnishment took $600, net went to $400'.",
+      "expected_output": "Specialist runs T4 → T5: compares observed vs expected (the $500 minimum-take-home floor didn't hold — net dropped below $500), ranks the top two hypotheses (Minimum Take-Home field blank/zero vs field populated but calc not reading it — e.g. wrong scope, effective date, or sequence), and asks ONE narrowing question that would DIFFERENTIATE between them (e.g. 'send a screenshot of the Employee Deduction screen showing the Minimum Take-Home field with its exact value'). Still one question per reply. Still no diagnostic label — describes the mismatch neutrally ('the $500 floor didn't hold') without calling it a bug or config gap.",
+      "files": [],
+      "expectations": [
+        "The reply states the divergence: the $500 minimum take-home floor did not hold because net fell to $400",
+        "The reply ranks the top hypotheses",
+        "The reply asks exactly one narrowing question",
+        "The question differentiates between the top two hypotheses",
+        "The reply does not use a diagnostic label such as defect, bug, or config gap"
+      ]
+    },
+    {
+      "id": 28,
+      "prompt": "Troubleshooting mode — user has answered several narrowing questions AND every documented-setup hypothesis from T4 has been tested (Base Code Elements composition ruled out, Master Calculation Sequence of the target rule ruled out, Base Code Element sequences ruled out, effective dates ruled out, scope ruled out, eligibility ruled out, interacting rules ruled out, base wage figure ruled out). Both the setup values on-screen AND the documented behaviour look internally consistent, but the observed result still diverges.",
+      "expected_output": "Specialist closes T6 with the variant-B source-check offer. The offer explicitly names the hypotheses already ruled out so the analyst can see WHY source is now the right next step — e.g. 'I've ruled out the Base Code Elements composition, the Master Calculation Sequences on both sides, the effective dates on the Employee Deduction, and the interacting rules. Both your setup and the docs look consistent — want me to check the source to see how the calculation actually chains these rules together at runtime?'. Does NOT keep guessing hypotheses when the doc/setup tree is fully walked; does NOT hand off to support prematurely without offering the source check first; does NOT label the mismatch as a defect. The offer is a single question — variant-B ONLY, never combined with another diagnostic question in the same reply.",
+      "files": [],
+      "expectations": [
+        "The reply ends with a variant-B source-check offer",
+        "The offer names the hypotheses already ruled out",
+        "The reply asks only the variant-B question and no additional diagnostic question",
+        "The reply does not propose further untested documented hypotheses",
+        "The reply does not hand off to support without offering the source check first",
+        "The reply does not use a diagnostic label"
+      ]
+    },
+    {
+      "id": 31,
+      "prompt": "Troubleshooting mode — user has confirmed the Minimum Take-Home field is populated at $500 on the Employee Deduction, but net still dropped below $500. Documented hypotheses NOT yet tested: Master Calculation Sequence of the DISP Base Code Elements vs the garnishment deduction's own sequence, effective dates, other interacting deductions.",
+      "expected_output": "Specialist does NOT offer variant-B yet — there are still documented-setup hypotheses that can be tested via analyst data. The correct next move is a SINGLE narrowing question aimed at the highest-value untested documented hypothesis — typically the Master Calculation Sequence values for the DISP Base Code Elements and for the garnishment deduction itself, because an Element with sequence >= garnishment's sequence isn't yet computed when garnishment runs and would be missing from the disposable-income figure. Anti-pattern that MUST NOT appear: 'Two options — pick one: (1) want me to check the source ... or (2) send me the Calculation Sequence values'. Two options in one reply, and variant-B offered alongside a documented-setup hypothesis, both violate the mode. The correct output is one question aimed at Calculation Sequences of the DISP Base Code Elements vs the garnishment's sequence — and no variant-B offer in this reply.",
+      "files": [],
+      "expectations": [
+        "The reply does not offer a variant-B source check",
+        "The reply asks exactly one narrowing question",
+        "The question targets the Master Calculation Sequence values for the DISP Base Code Elements and for the garnishment deduction itself",
+        "The reply explains that an Element whose sequence is greater than or equal to the garnishment's sequence is not yet computed when garnishment runs and would be missing from the disposable-income figure",
+        "The reply does not present two options for the user to choose between",
+        "The reply does not use a diagnostic label"
+      ]
+    },
+    {
+      "id": 29,
+      "prompt": "Troubleshooting mode — after investigation, the divergence looks like it needs a controlled tenant repro or is beyond what a functional specialist can determine from screenshots and data alone.",
+      "expected_output": "Specialist closes T6 with a clean HANDOFF: describes the mismatch NEUTRALLY (what was expected per docs, what was observed, what was ruled out during the investigation), and hands off to the appropriate role for the actual determination — support analyst for a controlled clean-tenant repro, engineering for a defect determination, or the tenant admin / consultant for an environment or configuration check. Explicitly does NOT label the divergence as 'a defect', 'a bug', 'a config gap', 'working as designed', 'an environment issue', or any other diagnostic category. The classification is the receiving role's determination to make, not the functional specialist's.",
+      "files": [],
+      "expectations": [
+        "The reply describes the mismatch neutrally, stating what was expected per the docs, what was observed, and what was ruled out",
+        "The reply hands off to a named role: support analyst, engineering, or tenant admin/consultant",
+        "The reply does not use the words defect, bug, config gap, working as designed, or environment issue",
+        "The reply does not make the classification itself"
+      ]
+    },
+    {
+      "id": 30,
+      "prompt": "User asks a pure 'how does X work' question with no divergence claim (e.g. 'explain how the minimum take-home amount works on Employee Deduction').",
+      "expected_output": "Specialist stays in Q&A MODE, not troubleshooting mode. Trigger cues for troubleshooting mode ('testing', 'not seeing the right result', divergence claim, observed vs expected mismatch) are absent, so the specialist responds with the standard Q&A pattern: retrieve, short answer with source, mandatory offer line (variant A/B/C as retrieval outcome dictates). Does NOT ask diagnostic questions as if this were a troubleshooting scenario — the user is asking to learn, not to investigate.",
+      "files": [],
+      "expectations": [
+        "The reply stays in Q&A mode",
+        "The reply does not ask diagnostic or narrowing questions",
+        "The reply gives a short answer with a source citation",
+        "The reply ends with a mandatory offer line whose variant matches the retrieval outcome",
+        "The offer is rendered via AskUserQuestion"
+      ]
+    },
+    {
+      "id": 32,
+      "prompt": "Multi-turn: the specialist has presented an AskUserQuestion offer on two consecutive replies and both times the answer came back as '[No preference]' (the user dismissed or skipped the popup rather than choosing). The user then asks a further CMiC HCM question.",
+      "expected_output": "The reply is structurally identical to any other specialist reply: short answer + source citation + a mandatory offer line rendered via AskUserQuestion. The skill MUST NOT infer from the skipped popups that the user dislikes menus; MUST NOT drop the offer line or downgrade it to plain markdown on that basis; and MUST NOT announce a withdrawal ('I'll stop offering menus', 'I'll stop asking'). A skipped popup is ambiguous — dismissed, not rendered in that client, or none of the options fit — and carries no behavioural instruction. On a repeat skip the specialist RE-CUTS the option set (different angle, different granularity, or a different A/B/C variant than the skipped ones) rather than removing it. Per corrections.jsonl scope 'offer-line' (2026-08-28). Complements eval 25, which asserts the rule for a single reply in isolation; this one asserts it survives across turns.",
+      "files": [],
+      "expectations": [
+        "The reply includes a short answer and a source citation",
+        "The reply ends with an offer line rendered via AskUserQuestion",
+        "The offer line is not dropped or downgraded to plain markdown",
+        "The reply does not announce that the specialist will stop offering choices",
+        "The option set differs from the options the user skipped",
+        "The reply does not infer a standing preference from the skipped popups"
+      ]
+    },
+    {
+      "id": 33,
+      "prompt": "/cmic-hcm-payroll-specialist",
+      "expected_output": "The user has invoked the specialist explicitly but supplied no question, so Step 0 onboarding applies. Leads with a brief self-introduction (who it is, that the user can ask in plain English, that it answers from the official HCM sources and cites them), introduces the three personas it serves and that it tailors to them (Product Analyst / Support, Consultant / Implementer, Product Management / R&D), names in one line what can be asked for (explain how something works / set something up / a field or flag's rules / troubleshoot a result / produce a document), and asks the user to introduce themselves via an AskUserQuestion chip set: Product Analyst / Consultant / Product Management / Just exploring. Keeps it to the menu — NOT a wall of text. Once a persona is picked, greets in that lane and shows 2–3 tailored 'try asking…' examples; 'Just exploring' gets the general set. Same expected behaviour for an explicit invocation followed by 'help', 'what can you do', 'where do I start', or an opener too vague to act on. IMPORTANT: Step 0 applies only once the skill is ALREADY ENGAGED. A bare greeting in a cold session must NOT summon the specialist at all — that case is covered by trigger-evals.json, where 'hi' carries should_trigger: false. Per corrections.jsonl scope 'onboarding' (2026-08-22).",
+      "files": [],
+      "expectations": [
+        "The reply introduces the specialist and states that the user can ask in plain English",
+        "The reply states that answers come from the official HCM sources and are cited",
+        "The reply introduces the three personas served",
+        "The reply names in one line what the user can ask for",
+        "The reply asks the user to introduce themselves via an AskUserQuestion chip set with options Product Analyst, Consultant, Product Management and Just exploring",
+        "The reply is a short menu rather than a wall of text",
+        "The reply does not guess a topic and does not sit silent",
+        "The reply does not attempt to answer an HCM question, because none was asked"
+      ]
+    },
+    {
+      "id": 34,
+      "prompt": "Where do I see an employee's leave balance?",
+      "expected_output": "A first question that is vague but still answerable — so the specialist does NOT front-load the full Step 0 onboarding menu. It answers what it can (or asks the ONE grounded clarifying question per Step 3 if retrieval shows a material branch, naming the branch options in the product's own vocabulary), then adds a SINGLE light line teaching the surface area — e.g. 'New here? I can also show setup steps, troubleshoot, or write this up' — plus the mandatory offer line. The full self-introduction and persona chip set are reserved for greetings, explicit help asks, and openers too vague to act on at all. Tests the restraint direction of the same 2026-08-22 onboarding correction that eval 33 tests the full-menu direction of.",
+      "files": [],
+      "expectations": [
+        "The reply does not include the full persona menu or the full self-introduction",
+        "The reply answers the question, or asks exactly one grounded clarifying question naming branch options from the sources",
+        "The reply includes exactly one light line teaching the wider surface area (e.g. 'New here? I can also show setup steps, troubleshoot, or write this up') — zero such lines is a FAIL, since the 2026-08-22 correction requires one on a vague-but-answerable opener",
+        "The reply ends with a mandatory offer line rendered via AskUserQuestion"
+      ]
+    }
+  ]
+}
