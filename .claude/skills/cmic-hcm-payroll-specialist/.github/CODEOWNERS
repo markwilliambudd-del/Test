@@ -1,0 +1,13 @@
+# Verified findings — product-truth about how CMiC HCM/Payroll behaves.
+# Requires review from the specialist maintainer before merge.
+learned/verified/    @Imran-Ahmed_cmic
+
+# Skill definition, behavioural evals, and corrections — all changes here
+# affect how the specialist behaves in future sessions.
+SKILL.md             @Imran-Ahmed_cmic
+evals/               @Imran-Ahmed_cmic
+corrections.jsonl    @Imran-Ahmed_cmic
+
+# Everything else — same reviewer for now.
+# Add more owners here (users or teams) as the reviewer group grows.
+*                    @Imran-Ahmed_cmic
